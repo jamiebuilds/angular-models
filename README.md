@@ -27,3 +27,13 @@ angular.module('myApp', ['tjk.models'])
     $scope.model.bar = 10; // $scope.model = { foo: 12, bar: 10, tah: 22 }
   }]);
 ```
+
+### TODO
+
+- Add properties hash
+- Validation
+- Add convenience methods to prototype (underscore: `keys`, `values`, `pairs`, `invert`, `pick`, `omit`)
+- Add ArrayModel
+- Add Tests
+- Backbone-style Events?
+- Backbone-style server fetching/syncing?
