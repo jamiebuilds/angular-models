@@ -1,0 +1,27 @@
+{
+  "name": "angular-models",
+  "main": "angular-models.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/thejameskyle/angular-models",
+  "authors": [
+    "James Kyle <me@thejameskyle.com>"
+  ],
+  "description": "Angular rich data model service",
+  "keywords": [
+    "angular",
+    "model",
+    "service"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.10",
+    "underscore": "~1.5.2"
+  }
+}

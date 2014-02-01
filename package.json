@@ -1,0 +1,24 @@
+{
+  "name": "angular-models",
+  "version": "0.0.1",
+  "description": "Angular rich data model service",
+  "main": "angular-models.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thejameskyle/angular-models.git"
+  },
+  "keywords": [
+    "angular",
+    "model",
+    "service"
+  ],
+  "author": "James Kyle <me@thejameskyle.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thejameskyle/angular-models/issues"
+  },
+  "homepage": "https://github.com/thejameskyle/angular-models"
+}

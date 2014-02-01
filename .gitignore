@@ -1,0 +1,17 @@
+# SublimeText
+/*.sublime-project
+*.sublime-workspace
+sftp-config*.json
+
+# OSX
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Node
+npm-debug.log
+node_modules
+
+# Bower
+bower_components
