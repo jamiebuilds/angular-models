@@ -1,37 +1,72 @@
 angular.module('tjk.models', [])
 
   .factory('ObjectModel', ['$rootScope', function ($rootScope) {
-    return {
-      defaults: {},
-      calculatedProperties: {},
+    var ObjectModel = function (builder, object) {
+      return this.initialize(builder, object);
+    };
 
-      extend: function (object) {
-        return _.extend(this, object, { current: {} });
-      },
+    ObjectModel.prototype = {
+      initialize: function (builder, object) {
+        this.builder(builder);
 
-      create: function (data) {
-        var self = this;
+        this.current = _.defaults({}, object, this.defaults);
 
-        this.current = data;
-        this.current = _.defaults(this.current, this.defaults);
-
-        _.each(this.calculatedProperties, function (definition, prop) {
-          self.bindProperty( prop, _.first(definition), _.rest(definition) );
-        });
+        _.each(this.computedProperties, function (value, prop) {
+          this.bindProperty( prop, _.first(value), _.rest(value) );
+        }, this);
 
         return this.current;
+      },
+
+      builder: function (builder) {
+        _.each(builder, function (value, prop) {
+          this[ prop ] = value;
+        }, this);
+      },
+
+      destroy: function () {
+        _.each(this.watchers, function (watcher) {
+          this.watcher();
+        }, this);
+
+        this.watchers.length = 0;
+        delete this.current;
       },
 
       bindProperty: function (prop, fn, bindings) {
         var self = this;
 
-        $rootScope.$watchCollection(function () {
+        var watcher = $rootScope.$watchCollection(function () {
           return _.map(bindings, function (binding) {
             return self.current[ binding ];
           });
         }, function (values) {
           self.current[ prop ] = fn.apply(self.current, values);
-        })
+        });
+
+        this.watchers.push(watcher);
       }
     };
+
+    ObjectModelBuilder = function () {
+      this.initialize();
+    };
+
+    ObjectModelBuilder.prototype = {
+      initialize: function () {
+        this.defaults = {};
+        this.computedProperties = {};
+        this.watchers = [];
+      },
+
+      extend: function (object) {
+        return _.extend(this, object);
+      },
+
+      create: function (object) {
+        return new ObjectModel(this, object);
+      }
+    };
+
+    return new ObjectModelBuilder();
   }]);
